@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block content %}
+<div class="d-flex justify-content-between align-items-center"><h1>Visit Records</h1>
+<div><a class="btn btn-outline-primary" href="{{ url_for('add_patient') }}">Add synthetic patient</a>
+<a class="btn btn-primary" href="{{ url_for('add_visit') }}">Add visit</a></div></div>
+<p class="text-muted">Administrator-only view. Latest 200 records; do not enter real patient identifiers.</p>
+<div class="table-responsive"><table class="table table-striped">
+<thead><tr><th>Visit ID</th><th>Date</th><th>Department</th><th>Age band</th><th>Gender</th><th>Visit type</th></tr></thead>
+<tbody>{% for v in visits %}<tr><td>{{ v.visit_id }}</td><td>{{ v.visit_date }}</td><td>{{ v.department_name }}</td><td>{{ v.age_band }}</td><td>{{ v.gender }}</td><td>{{ v.visit_type }}</td></tr>
+{% else %}<tr><td colspan="6">No records found.</td></tr>{% endfor %}</tbody></table></div>
+{% endblock %}

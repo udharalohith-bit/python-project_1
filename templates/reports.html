@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block content %}
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+<h1>Operational Reports</h1>
+<a class="btn btn-success" href="{{ url_for('export_reports') }}">Download aggregate CSV</a>
+</div>
+<p class="text-muted">CSV contains grouped counts only; no individual patient-level records are exported.</p>
+<h3 class="mt-4">Department-wise workload</h3>
+<table class="table table-striped"><thead><tr><th>Department</th><th>Total visits</th></tr></thead><tbody>
+{% for row in departments %}<tr><td>{{ row.department_name }}</td><td>{{ row.total_visits }}</td></tr>{% else %}<tr><td colspan="2">No data available.</td></tr>{% endfor %}
+</tbody></table>
+<h3 class="mt-4">Age-band summary</h3>
+<table class="table table-striped"><thead><tr><th>Age band</th><th>Total visits</th></tr></thead><tbody>
+{% for row in age_bands %}<tr><td>{{ row.age_band }}</td><td>{{ row.total_visits }}</td></tr>{% else %}<tr><td colspan="2">No data available.</td></tr>{% endfor %}
+</tbody></table>
+<h3 class="mt-4">Monthly visit trend</h3>
+<table class="table table-striped"><thead><tr><th>Month</th><th>Total visits</th></tr></thead><tbody>
+{% for row in monthly %}<tr><td>{{ row.month }}</td><td>{{ row.total_visits }}</td></tr>{% else %}<tr><td colspan="2">No data available.</td></tr>{% endfor %}
+</tbody></table>
+{% endblock %}

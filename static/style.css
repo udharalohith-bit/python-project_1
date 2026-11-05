@@ -1,0 +1,7 @@
+body { background: #f5f7fb; }
+.card { border: 0; border-radius: 12px; }
+.metric { min-height: 120px; }
+.navbar-brand { font-weight: 700; }
+
+.chart-image { max-height: 360px; object-fit: contain; }
+.table { background: #fff; }

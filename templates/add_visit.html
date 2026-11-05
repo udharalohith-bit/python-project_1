@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block content %}
+<h1>Add Visit</h1><form method="post" class="col-md-6">
+<label class="form-label">Synthetic patient</label><select class="form-select mb-3" name="patient_id" required><option value="">Choose patient...</option>
+{% for p in patients %}<option value="{{ p.patient_id }}">Patient {{ p.patient_id }} ({{ p.age_band }})</option>{% endfor %}</select>
+<label class="form-label">Department</label><select class="form-select mb-3" name="department_id" required><option value="">Choose department...</option>
+{% for d in departments %}<option value="{{ d.department_id }}">{{ d.department_name }}</option>{% endfor %}</select>
+<label class="form-label">Visit date</label><input class="form-control mb-3" type="date" name="visit_date" required>
+<label class="form-label">Visit type</label><select class="form-select mb-3" name="visit_type" required>
+{% for t in ["Outpatient","Inpatient","Emergency","Follow-up"] %}<option>{{ t }}</option>{% endfor %}</select>
+<button class="btn btn-primary">Save visit</button></form>{% endblock %}

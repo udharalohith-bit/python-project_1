@@ -1,0 +1,16 @@
+{% extends "base.html" %}{% block content %}
+<h1>Hospital Operations Dashboard</h1>
+<p class="text-muted">Aggregated operational statistics from synthetic/de-identified visit records.</p>
+<div class="row g-3 my-2">
+{% for label, value in [("Total visits",data.total_visits),("Departments",data.departments),("Unique patients",data.patients),("Visits this month",data.this_month),("Average visits per active day",data.avg_daily_visits)] %}
+<div class="col-md-3"><div class="card metric shadow-sm"><div class="card-body"><div class="text-muted">{{ label }}</div><div class="display-6">{{ value }}</div></div></div></div>
+{% endfor %}
+</div>
+{% if data.total_visits %}
+<div class="row g-4 mt-2">
+<div class="col-lg-6"><div class="card"><div class="card-body"><h5>Department workload</h5><img class="img-fluid" src="{{ url_for('static', filename='charts/departments.png') }}" alt="Visits by department"></div></div></div>
+<div class="col-lg-6"><div class="card"><div class="card-body"><h5>Monthly visit trend</h5><img class="img-fluid" src="{{ url_for('static', filename='charts/monthly.png') }}" alt="Monthly visit trend"></div></div></div>
+<div class="col-lg-6"><div class="card"><div class="card-body"><h5>Visit type distribution</h5><img class="img-fluid chart-image" src="{{ url_for('static', filename='charts/visit_types.png') }}" alt="Visit type distribution"></div></div></div>
+</div>
+{% else %}<div class="alert alert-info mt-3">No visit data yet. Run <code>python seed.py</code> to load synthetic sample records.</div>{% endif %}
+{% endblock %}
